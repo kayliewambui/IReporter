@@ -1,0 +1,37 @@
+.dashboard {
+  padding: 20px;
+}
+
+.dashboard .MuiGrid-item {
+  cursor: pointer;
+}
+
+.dashboard .MuiCard-root {
+  transition: transform 0.2s;
+}
+
+.dashboard .MuiCard-root:hover {
+  transform: scale(1.05);
+}
+
+.dashboard .MuiTypography-h4 {
+  margin-bottom: 20px;
+}
+
+.dashboard .MuiTableCell-root {
+  display: flex;
+  align-items: center;
+}
+
+.dashboard .MuiAvatar-root {
+  margin-right: 10px;
+}
+
+.dashboard .MuiTableCell-root,
+.dashboard .MuiTableHead-root {
+  font-size: 1rem;
+}
+
+.dashboard .MuiTableHead-root {
+  background-color: #f5f5f5;
+}
