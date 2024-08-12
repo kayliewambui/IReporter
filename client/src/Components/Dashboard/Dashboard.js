@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Card, CardContent, Typography, Grid, Dialog, DialogTitle, DialogContent, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import Header from '../Header/Header'; // Importing the existing Header component
 import './Dashboard.css';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -35,8 +36,9 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <Typography variant="h2">Welcome, Kaylie</Typography>
-      <Grid container spacing={2}>
+      <Header /> {/* Include your existing Header */}
+      
+      <Grid container spacing={2} style={{ marginTop: '20px' }}>
         <Grid item xs={4}>
           <Card onClick={() => handleCardClick('Redflags')}>
             <CardContent>
@@ -79,8 +81,8 @@ const Dashboard = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>Category</TableCell>
+                <TableCell>Public ID</TableCell> {/* Changed 'Name' to 'Public ID' */}
+                <TableCell>Category</TableCell> {/* Updated as per your request */}
                 <TableCell>Image/Video</TableCell>
                 <TableCell>Location</TableCell>
                 <TableCell>Status</TableCell>
@@ -88,21 +90,21 @@ const Dashboard = () => {
             </TableHead>
             <TableBody>
               <TableRow>
-                <TableCell>Kaylie Wambui</TableCell>
+                <TableCell>12345</TableCell> {/* Example Public ID */}
                 <TableCell>Red Flag</TableCell>
                 <TableCell>Image</TableCell>
                 <TableCell>Ngong Road</TableCell>
                 <TableCell>Resolved</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Fatuma Galoiglo</TableCell>
+                <TableCell>23456</TableCell>
                 <TableCell>Intervention</TableCell>
                 <TableCell>Video</TableCell>
                 <TableCell>Moi Avenue</TableCell>
                 <TableCell>Under Investigation</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Hann Martin</TableCell>
+                <TableCell>34567</TableCell>
                 <TableCell>Red Flag</TableCell>
                 <TableCell>Image</TableCell>
                 <TableCell>Kilimani</TableCell>

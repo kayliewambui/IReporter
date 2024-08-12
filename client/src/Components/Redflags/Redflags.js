@@ -1,24 +1,33 @@
-// src/components/Redflags/Redflags.js
-
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { fetchRedflags } from '../../actions';
+// src/Components/Redflags/Redflags.js
+import React, { useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
+import axios from 'axios';
 
-const Redflags = ({ redflags, fetchRedflags }) => {
+const Redflags = () => {
+  const [redflags, setRedflags] = useState([]);
+
   useEffect(() => {
+    const fetchRedflags = async () => {
+      try {
+        const response = await axios.get('https://ireporter-server-hb42.onrender.com/api/records?type=redflag');
+        setRedflags(response.data);
+      } catch (error) {
+        console.error('Error fetching redflags:', error);
+      }
+    };
+
     fetchRedflags();
-  }, [fetchRedflags]);
+  }, []);
 
   return (
     <div>
-      <Typography variant="h5">Redflags</Typography>
+      <Typography variant="h4">Redflags</Typography>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
               <TableCell>Public ID</TableCell>
-              <TableCell>Redflag</TableCell>
+              <TableCell>Description</TableCell>
               <TableCell>Image/Video</TableCell>
               <TableCell>Location</TableCell>
               <TableCell>Status</TableCell>
@@ -26,9 +35,9 @@ const Redflags = ({ redflags, fetchRedflags }) => {
           </TableHead>
           <TableBody>
             {redflags.map((redflag) => (
-              <TableRow key={redflag.publicID}>
-                <TableCell>{redflag.publicID}</TableCell>
-                <TableCell>{redflag.category}</TableCell>
+              <TableRow key={redflag.id}>
+                <TableCell>{redflag.publicId}</TableCell>
+                <TableCell>{redflag.description}</TableCell>
                 <TableCell>{redflag.media}</TableCell>
                 <TableCell>{redflag.location}</TableCell>
                 <TableCell>{redflag.status}</TableCell>
@@ -41,8 +50,4 @@ const Redflags = ({ redflags, fetchRedflags }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  redflags: state.redflags.redflags,
-});
-
-export default connect(mapStateToProps, { fetchRedflags })(Redflags);
+export default Redflags;

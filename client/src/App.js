@@ -6,6 +6,8 @@ import Sidebar from './Components/Sidebar/Sidebar';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Redflags from './Components/Redflags/Redflags';
 import Interventions from './Components/Interventions/Interventions';
+import GeoLocation from './Components/GeoLocation/GeoLocation';
+
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/redflags" element={<Redflags />} />
               <Route path="/interventions" element={<Interventions />} />
+              <Route path="/geo-location" element={<GeoLocation />} />
             </Routes>
           </div>
         </div>

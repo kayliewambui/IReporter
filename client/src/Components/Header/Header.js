@@ -1,10 +1,21 @@
-import React from 'react';
+// src/components/Header/Header.js
+
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, IconButton, MenuItem, Select, Typography } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import userImage from '../../assets/userImage.png'; // This will be the fallback image if needed
+import { fetchUser } from '../../actions/userActions';
+import userImage from '../../assets/userImage.png';
 import './Header.css';
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const { user, loading, error } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
+
   return (
     <header className="header">
       <div className="header-left">
@@ -28,10 +39,26 @@ const Header = () => {
           <NotificationsIcon />
         </IconButton>
         <div className="user-info">
-          <Avatar alt="Kaylie Wambui" src={userImage} />
+          <Avatar alt={user.workId} src={userImage} />
           <div className="user-details">
-            <Typography variant="body1" className="user-name">Kaylie Wambui</Typography>
-            <Typography variant="body2" className="user-email">kaylie.wambui@ireporter.com</Typography>
+            {loading ? (
+              <Typography variant="body1" className="user-name">
+                Loading...
+              </Typography>
+            ) : error ? (
+              <Typography variant="body1" className="user-name">
+                Error
+              </Typography>
+            ) : (
+              <>
+                <Typography variant="body1" className="user-name">
+                  {user.workId}
+                </Typography>
+                <Typography variant="body2" className="user-email">
+                  {user.email}
+                </Typography>
+              </>
+            )}
           </div>
         </div>
       </div>
